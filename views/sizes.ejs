@@ -16,7 +16,7 @@
   <body>
     <!--Vertical Navbar-->
   <div class="vertical-nav bg-white" id="sidebar">
-    <div class="py-4 px-3 mb-4" style="background: linear-gradient(to top, #0066eb 0%, #ff8ab3 68%);">
+    <div class="py-4 px-3 mb-4" style="background: linear-gradient(to top, #f1ef69 0%, #f7a85f 68%);">
       <div class="media d-flex align-items-center"><img src="admin.svg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
         &emsp;<div class="media-body">
           <h4 class="m-0"><p class="text-white"><shop-name></h4>
@@ -83,7 +83,7 @@
               </a>
       </li>
       <li class="nav-item">
-        <a href="/sizes" class="nav-link text-dark font-italic" style="background: linear-gradient(to right, #0066eb 0%, #ff8ab3 68%);">
+        <a href="/sizes" class="nav-link text-dark font-italic" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
           <p class="text-white"><i class="check square icon"></i>
                   Size
             </p>
@@ -113,7 +113,7 @@
   <!-- End vertical navbar -->
   
   <!-- Page content holder -->
-  <div class="page-content p-5" id="content" style="background: linear-gradient(to right, #e9edf1 47%, #ff8ab3 100%);">
+  <div class="page-content p-5" id="content" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
     <!-- Toggle button -->
     <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="align justify icon"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
   
@@ -139,7 +139,7 @@
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Enter New Size</label>
                 <form action="/addsize" method="POST">
-                <input type="text" class="form-control" id="formGroupExampleInput" name="new" style="color:white;background: linear-gradient(to right, #0066eb 0%, #ff8ab3 68%);">
+                <input type="text" class="form-control" id="formGroupExampleInput" name="new" style="color:white;background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
               </div>
         </div>
         <div class="modal-footer">
@@ -159,7 +159,7 @@
     </thead>
     <tbody>
         <% size.forEach(function(order){ %>
-            <tr style="background: linear-gradient(to left, #0066eb 0%, #ff8ab3 68%);">
+            <tr style="background: linear-gradient(to left, #f1ef69 0%, #f7a85f 68%);">
                 <td><center><h2><%= order.Size %></h2> &emsp;<form action="/deletesize" method="POST"><input type="hidden" name="deleteid" value="<%= order.Size %>"><button type="submit" class="btn btn-danger btn-sm">Delete</button></form></center></td> 
             </tr>
         <% }); %>

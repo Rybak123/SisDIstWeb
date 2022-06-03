@@ -500,8 +500,11 @@ const e = require('express')
 
 
   app.post('/deleteitem', checkAuthenticated,(req,res) => {
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    console.log(req)
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
     axios.post("http://"+direccionURLAPI+"/univalle/v1/orders/deleteitem", {
-      deleteid:req.body.ItemID
+      deleteid:req.body
     })
     .then(function (response) {
       res.redirect('/orders')
