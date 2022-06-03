@@ -11,10 +11,11 @@ if (process.env.NODE_ENV !== 'production') {
   const mysql = require('mysql');
   const bodyparser = require('body-parser');
   const dotenv = require('dotenv');
-
+  const axios = require('axios').default;
   var port = process.env.PORT || 5000;
   app.use(bodyparser.json());
 
+  var direccionURLAPI="127.0.0.1:3000";
   //quitar
   var mysqlConnection = mysql.createConnection({
     host:'localhost',
@@ -64,9 +65,26 @@ const e = require('express')
   app.use(passport.session())
   app.use(methodOverride('_method'))
     //quitar
-  app.get('/', checkAuthenticated, (req, res) => {
-   
-  })
+  app.get("/", checkAuthenticated, (req, res) => {
+
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/orders/orderIndex", {
+
+    })
+    .then(function (response) {
+      console.log("Llegó")
+      res.render('index.ejs',{
+        total_sales:response.data.rows1,
+        ord_num:response.data.rows2,
+        stock_num:response.data.rows3,
+        total_stock:response.data.rows4
+        });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  )
   
   app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
@@ -128,23 +146,50 @@ const e = require('express')
     })
   })
 
+
+  var request = require('request');
+  
+
 //View Orders
   app.get('/orders', checkAuthenticated,(req,res) =>{
 
-    //Obtener rows y rows 1
-    res.render('orders.ejs',{
-      orders:rows, sub_orders:rows1, selected_item:'None', month_name:'None', year:'None'
+
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/orders/orders", {
+
+    })
+    .then(function (response) {
+        console.log(response.data)
+        res.render('orders.ejs',{
+        orders:response.data.rows, sub_orders:response.data.rows1, selected_item:'None', month_name:'None', year:'None'
+        });
+    })
+    .catch(function (error) {
+      console.log(error);
     });
+  
   })
 
   //View Stocks
   app.get('/viewstocks', checkAuthenticated,(req,res) =>{
 
-    //Stocks obtener rows rows1 rows2
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/stocks/viewstocks", {
 
-    res.render('viewstocks.ejs',{
-      all_stocks:rows, brands:rows1, categories:rows2,  display_content:'None', filter_type:'None', filter_name:'None'
-        });
+    })
+    .then(function (response) {
+
+      console.log(response.data)
+      res.render('viewstocks.ejs',{
+      all_stocks:response.data.rows, brands:response.data.rows1, categories:response.data.rows2,  display_content:'None', filter_type:'None', filter_name:'None'
+      
+
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+   
 
 
     
@@ -152,78 +197,130 @@ const e = require('express')
 
   //Stocks Query Filter
   app.post('/stocks_query',checkAuthenticated, (req, res) => {
-    //Stocks obtener row row1 row2 y row 3
-    res.render('viewstocks.ejs',{
-      all_stocks:rows, brands:rows1, categories:rows2, display_content:rows3, filter_type:'brand', filter_name:brand_name
-        });
 
-   //ifcategory
-
-   res.render('viewstocks.ejs',{
-    all_stocks:rows, brands:rows1, categories:rows2, display_content:rows3, filter_type:'category', filter_name:category_name
-      });
-  
+    var brand_name = req.body['selected_brand']
+    var category_name = req.body['selected_category']
+    var selected_item = req.body['exampleRadios']
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/stocks/stocks_query", {
+      selected_category:category_name,
+      selected_brand:brand_name,
+      exampleRadios:selected_item
+    })
+    .then(function (response) {
+        if(selected_item == 'brand')
+        {
+          res.render('viewstocks.ejs',{
+            all_stocks:response.data.rows, brands:response.data.rows1, categories:response.data.rows2, display_content:response.data.rows3, filter_type:'brand', filter_name:brand_name
+          });
+        }
+        if(selected_item == 'category')
+        {
+          res.render('viewstocks.ejs',{
+            all_stocks:response.data.rows, brands:response.data.rows1, categories:response.data.rows2, display_content:response.data.rows3, filter_type:'category', filter_name:category_name
+          });
+        }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
 
   //Fetch Items by ID for billing
   app.post('/fetchitem',checkAuthenticated, (req, res) =>{
-    //FetchItems obtener row
-    res.json({success : "Updated Successfully", status : 200, rows:rows});
-
-
+    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/items/fetchItem", {
+      itemid : req.body.itemid
+    })
+    .then(function (response) {
+      console.log(response.data)
+      res.json({success : "Updated Successfully", status : 200, rows:response.data.rows});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
 
   //Billing
   app.get('/billing',checkAuthenticated, (req, res) => {
-    //Billing obtener row1 row2 row3
-                var category = rows1
-                var brand = rows2
-                var size = rows3
-    res.render('bill.ejs',{category:category, brand:brand, size:size})
- 
-    
-   
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/billing/billing", {
+    })
+    .then(function (response) {
+        var category = response.data.rows1
+        var brand = response.data.rows2
+        var size = response.data.rows3
+        res.render('bill.ejs',{category:category, brand:brand, size:size})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 })
 
 //Add New Category
   app.post('/addcategory',checkAuthenticated,(req,res) => {
-    //AñadirNUevaCategoria devolver row(no se usa)
-    res.redirect('/categories')
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/category/addcategory", {
+      new:req.body.new
+    })
+    .then(function (response) {
+       res.redirect('/categories')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
-
   //Add New Brand
   app.post('/addbrand',checkAuthenticated,(req,res) => {
-    //AÑadirNUevaMarca
-    res.redirect('/brands')
-
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/brand/addbrand", {
+      new:req.body.new
+    })
+    .then(function (response) {
+      res.redirect('/brands')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
-
   //Add New Size
   app.post('/addsize',checkAuthenticated,(req,res) => {
-    //AÑadir nuevo tamaño
-    res.redirect('/sizes')
-
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/sizes/addsize", {
+      new:req.body.new
+    })
+    .then(function (response) {
+      res.redirect('/sizes')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });    
   })
-
   //Orders Filter Query
   app.post('/orders_query', checkAuthenticated,(req,res) => {
-    //OrdersFilterQery
+    var time_type = req.body['exampleRadios']
+    var month= req.body['selected_month']
+    var year = req.body['selected_year']
 
-    //Obtener row row1 year y mes
-    //Month
-    res.render('orders.ejs',{
-      orders:rows, sub_orders:rows1, selected_item:'month', month_name:month_name, year:year
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+    var month_name = monthNames[parseInt(month-1)]
+
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/orders/orders_query", {
+      exampleRadios:time_type,
+      selected_month:month,
+      selected_year:year
+    })
+    .then(function (response) {
+      if (time_type == 'month'){
+        res.render('orders.ejs',{
+          orders:response.data.rows, sub_orders:response.data.rows1, selected_item:'month', month_name:month_name, year:year
+        });
+      }
+      if (time_type == 'year'){
+        res.render('orders.ejs',{
+          orders:response.data.rows, sub_orders:response.data.rows1, selected_item:'year', month_name:'None', year:year
+        });
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-    //Year
-
-    res.render('orders.ejs',{
-      orders:rows, sub_orders:rows1, selected_item:'year', month_name:'None', year:year
-    });
-
-
-   
   })
 
   //Sales Filter
@@ -238,121 +335,233 @@ const e = require('express')
 
   //Stock Filter
   app.post('/stock_filter_query', checkAuthenticated,(req, res) => {
-    //StockFilter
-    //rows rows1
-    //brand
-    res.render('stock_filter.ejs',{filter_type: filter_type,display_content: rows, total_items:rows1}) 
-    //category
-    res.render('stock_filter.ejs',{filter_type: filter_type,display_content: rows, total_items:rows1}) 
-
-
-    
-  })
+    var filter_type = req.body['exampleRadios1']
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/stocks/stock_filter_query", {
+    })
+    .then(function (response) {
+        if(filter_type == 'brand'){
+          res.render('stock_filter.ejs',{filter_type: filter_type,display_content: response.data.rows, total_items:response.data.rows1}) 
+        }
+        if(filter_type == 'category'){
+          res.render('stock_filter.ejs',{filter_type: filter_type,display_content: response.data.rows, total_items:response.data.rows1}) 
+        }
+    })
+    .catch(function (error) {
+      console.log(error);
+    }); 
+  });
 
   //Sales Filter
   app.post('/sales_filter_query', checkAuthenticated,(req, res) => {
+    var time_type = req.body['exampleRadios'];
+    var month= req.body['selected_month'];
+    var year = req.body['selected_year'];
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/orders/orders_query", {
+      exampleRadios:time_type,
+      selected_month:month,
+      selected_year:year
+    })
+    .then(function (response) {
+      
+      if(time_type == 'month'){
+        if(req.body['exampleRadios1']=="all"){
+          var total_amount = response.data.rows1
+          res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'month', filter_type: 'all', display_content: response.data.rows, month_name: month_name, year:year, total_amount:total_amount})
+        }
+        if(req.body['exampleRadios1']=="brand"){
+          var total_amount = response.data.rows1
+          res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'month', filter_type: 'brand', display_content: response.data.rows, month_name: month_name, year:year, total_amount:total_amount})
+        }
+        if(req.body['exampleRadios1']=="category"){
+          var total_amount = response.data.rows1
+          res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'month', filter_type: 'category', display_content: response.data.rows, month_name: month_name, year:year, total_amount:total_amount})
+        }
+      }
+      if(time_type == 'year'){
+        if(req.body['exampleRadios1']=="all"){
+          var total_amount = response.data.rows1
+          res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'year', filter_type: 'all', display_content: response.data.rows, month_name: 'None', year:year, total_amount:total_amount})
+        }
+        if(req.body['exampleRadios1']=="brand"){
+          var total_amount = response.data.rows1
+          res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'year', filter_type: 'brand', display_content: response.data.rows, month_name: 'None', year:year, total_amount:total_amount}) 
+        }
+        if(req.body['exampleRadios1']=="category"){
+          var total_amount = response.data.rows1
+          res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'year', filter_type: 'category', display_content: response.data.rows, month_name: 'None', year:year, total_amount:total_amount})        
+        }
+      }   
 
-    //Obtener rows y rows1
-    //time_type =month 
-    var total_amount = rows1
-    res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'month', filter_type: 'brand', display_content: rows, month_name: month_name, year:year, total_amount:total_amount})
-     //ExampleRadios1 ==brand
-     var total_amount = rows1
-     res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'month', filter_type: 'all', display_content: rows, month_name: month_name, year:year, total_amount:total_amount})
-     //req.body['exampleRadios1'] == 'category'
-     var total_amount = rows1
-     res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'month', filter_type: 'category', display_content: rows, month_name: month_name, year:year, total_amount:total_amount})
-     //time_type == 'year'
-     var total_amount = rows1
-    res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'year', filter_type: 'all', display_content: rows, month_name: 'None', year:year, total_amount:total_amount})
-      //req.body['exampleRadios1'] == 'brand'
-      var total_amount = rows1
-      res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'year', filter_type: 'brand', display_content: rows, month_name: 'None', year:year, total_amount:total_amount})
-      //req.body['exampleRadios1'] == 'category'
-      var total_amount = rows1
-      res.render('sales_filter.ejs',{is_paramater_set : true, time_type: 'year', filter_type: 'category', display_content: rows, month_name: 'None', year:year, total_amount:total_amount})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-   
-    
+
+
+     
   })
 
   //View Categories
   app.get('/categories', checkAuthenticated,(req, res) => {
-    //Categorias
-    var category = rows1
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/category/categories", {
+
+    })
+    .then(function (response) {
+      var category = response.data.rows1
     res.render('categories.ejs', {category:category})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+   
 })
 
 //View Brands
 //Ver marcas rows 2
-var brand = rows2
-res.render('brands.ejs',{brand:brand})
+
 
   app.get('/brands', checkAuthenticated,(req, res) => {
-    
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/brand/brands", {
+
+    })
+    .then(function (response) {
+      var brand = response.data.rows2
+      res.render('brands.ejs',{brand:brand})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 })
 
 //View Sizes
   app.get('/sizes', checkAuthenticated,(req, res) => {
-    //Rows2
-    var size = rows2
-    res.render('sizes.ejs',{size:size})
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/sizes/sizes", {
+
+    })
+    .then(function (response) {
+      var size = response.data.rows2
+      res.render('sizes.ejs',{size:size})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
    
   })
 
-  //View Stocks
-  //Obtener Rows3 Rows2 Rows1
-  var category = rows1
-  var brand = rows2
-  var size = rows3
-  res.render('stocks.ejs',{category:category, brand:brand, size:size})
 
   app.get('/stocks', checkAuthenticated,(req, res) => {
-    
+
+    axios.get("http://"+direccionURLAPI+"/univalle/v1/stocks/stocks", {
+
+    })
+    .then(function (response) {
+      var category = response.data.rows1
+      var brand = response.data.rows2
+      var size = response.data.rows3
+      res.render('stocks.ejs',{category:category, brand:brand, size:size})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  
   })
 
   //Submit Bill
   //Enviar recibo , redirige a Ordenes la pagina
   app.post('/submitbill', checkAuthenticated,(req, res) => {
-    res.redirect('/orders')
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/billing/submitbill", {
+      cuerpo:req.body
+    })
+    .then(function (response) {
+      res.redirect('/orders')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
 
   //Submit Stock
   //Submit stock redirect  res.redirect('/viewstocks')
   app.post('/submitstock', checkAuthenticated,(req, res) => {
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/stocks/submitStocks", {
+      cuerpo:req.body
+    })
+    .then(function (response) {
+      res.redirect('/viewstocks')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
 
-  //Delete Order
-  res.redirect('/orders')
+
 
   app.post('/deleteitem', checkAuthenticated,(req,res) => {
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/orders/deleteitem", {
+      deleteid:req.body.ItemID
+    })
+    .then(function (response) {
+      res.redirect('/orders')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+      
   })
 
-  //Delete Category
-  res.redirect('/categories')
+
   app.post('/deletecategory', checkAuthenticated,(req,res) => {
-   
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/category/deletecategory", {
+      deleteid:req.body.deleteid
+    })
+    .then(function (response) {
+      res.redirect('/categories')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   })
 
-  //Delete Brand
-  res.redirect('/brands')
+ 
   app.post('/deletebrand', checkAuthenticated,(req,res) => {
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/brand/deletebrand", {
+      deleteid:req.body.deleteid
+    })
+    .then(function (response) {
+      res.redirect('/brands')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  
   })
 
-  //Delete Size
-  res.redirect('/sizes')
+  
   app.post('/deletesize', checkAuthenticated,(req,res) => {
-   
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/sizes/deletesize", {
+      deleteid:req.body.deleteid
+    })
+    .then(function (response) {
+      res.redirect('/sizes')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   })
-
-  //Delete Stock
-  res.redirect('/viewstocks')
 
   app.post('/deletestock', checkAuthenticated,(req,res) => {
-    
+    axios.post("http://"+direccionURLAPI+"/univalle/v1/stocks/deletestock", {
+      deleteid:req.body.deleteid
+    })
+    .then(function (response) {
+      res.redirect('/viewstocks')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+ 
   })

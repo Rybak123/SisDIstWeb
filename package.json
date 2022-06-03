@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "chart.js": "^3.0.1",
@@ -24,7 +25,8 @@
     "natives": "^1.1.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "pdfkit": "^0.11.0"
+    "pdfkit": "^0.11.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
