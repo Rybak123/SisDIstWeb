@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <title>Shanti Wear House</title>
+  <title>Sistemas distribuidos</title>
 </head>
 <body>
   <!--Vertical Navbar-->
@@ -19,91 +19,72 @@
       <div class="media d-flex align-items-center"><img src="admin.svg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
         &emsp;<div class="media-body">
           <h4 class="m-0"><p class="text-white"><shop-name></h4>
-            <p class="font-weight-light text-white mb-0">(Admin)</p>
+            <p class="font-weight-light text-white mb-0">Administrador</p>
         </div>
       </div>
     </div>
     <form action="/logout?_method=DELETE" method="POST">
-      <center><button type="submit" class="btn btn-danger" ><p class="text-white">Log Out</p></button></center>
+      <center><button type="submit" class="btn btn-danger" ><p class="text-white">Cerrar sesión</p></button></center>
     </form>
     <h5 class="ui horizontal divider header text-primary">
-      MAIN
+      PRINCIPALES
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/" class="nav-link text-dark font-italic" style="background: linear-gradient(to right,  #f1ef69 0%, #f7a85f 68%);">
                   <p class="text-white"><i class="home icon"></i>
-                  Dashboard
+                  Tablero de control
                 </p>
               </a>
       </li>
       <li class="nav-item">
         <a href="/billing" class="nav-link text-dark font-italic">
           <i class="rupee sign icon"></i>
-                  Bill
+                  Vender y facturar
               </a>
       </li>
       <li class="nav-item">
         <a href="/orders" class="nav-link text-dark font-italic">
           <i class="eye icon"></i>
-                  View Orders
+                  Ver orden de ventas
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  View Stocks
+                  Ver productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic">
           <i class="plus circle icon"></i>
-                  Add Stock
+                  Añadir producto
               </a>
       </li>
     </ul>
   
     <h5 class="ui horizontal divider header text-primary">
-      CUSTOMIZE
+      HELADOS
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic">
           <i class="yelp icon"></i>
-                  Brand
+                  Sabor
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic">
           <i class="bookmark icon"></i>
-                  Category
+                  Categorias
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Size
-              </a>
-      </li>
-    </ul>
-  
-    <h5 class="ui horizontal divider header text-primary">
-      FILTERS
-    </h5>
-  
-    <ul class="nav flex-column bg-white mb-0">
-      <li class="nav-item">
-        <a href="/sales_filter" class="nav-link text-dark font-italic">
-          <i class="yelp icon"></i>
-                  Sales
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="/stock_filter" class="nav-link text-dark font-italic">
-          <i class="bookmark icon"></i>
-                  Stock
+                  Unidad de venta
               </a>
       </li>
     </ul>
@@ -119,7 +100,7 @@
     <!-- Page content -->
     
     <br>
-    <h1>Dashboard</h1>
+    <h1>Tablero de control</h1>
     <br>
     <center><img class="ui large rounded image" src="dashboard.svg"></center>
     <br>
@@ -142,7 +123,7 @@
                 </p>
                 </div>
                 <div class="label">
-                  Total Sales
+                  Ingreso total en ventas
                 </div>
             </div>
           </center>
@@ -163,7 +144,7 @@
                 </p>
               </div>
               <div class="label">
-                Total Orders
+                Total de ventas
               </div>
             </div>
           </center>
@@ -183,7 +164,7 @@
                 </p>
               </div>
               <div class="label">
-                Total Stock
+                Total de productos en stock
               </div>
             </div>
           </center>
@@ -204,7 +185,7 @@
                 </p>
               </div>
               <div class="label">
-                Total Stock Value
+                Valor de los productos en stock
               </div>
             </div>
           </center>

@@ -28,39 +28,39 @@
       <center><button type="submit" class="btn btn-danger" ><p class="text-white">Log Out</p></button></center>
     </form>
     <h5 class="ui horizontal divider header text-primary">
-      MAIN
+      PRINCIPALES
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/" class="nav-link text-dark font-italic">
                   <i class="home icon"></i>
-                  Dashboard
+                  Tablero de control
                 </a>
       </li>
       <li class="nav-item">
         <a href="/billing" class="nav-link text-dark font-italic">
           <i class="rupee sign icon"></i>
-                  Bill
+                  Vender y facturar
               </a>
       </li>
       <li class="nav-item">
      <a href="/orders" class="nav-link text-dark font-italic" >
        <i class="eye icon"></i>
-                  View Orders
+                  Vero orden de ventas
      
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  View Stocks
+                  Ver productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic">
           <i class="plus circle icon"></i>
-                  Add Stock
+                  Añadir producto
               </a>
       </li>
     </ul>
@@ -79,39 +79,20 @@
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic"  style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
           <p class="text-white"><i class="yelp icon"></i>
-                  Brand
+                  Sabor
           </p>
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic">
           <i class="bookmark icon"></i>
-                  Category
+                  Categoria
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Size
-              </a>
-      </li>
-    </ul>
-
-    <h5 class="ui horizontal divider header text-primary">
-      FILTERS
-    </h5>
-  
-    <ul class="nav flex-column bg-white mb-0">
-      <li class="nav-item">
-        <a href="/sales_filter" class="nav-link text-dark font-italic">
-          <i class="yelp icon"></i>
-                  Sales
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="/stock_filter" class="nav-link text-dark font-italic">
-          <i class="bookmark icon"></i>
-                  Stock
+                  Unidad de venta
               </a>
       </li>
     </ul>
@@ -125,7 +106,7 @@
   
     <!-- Page content -->
     
-    <h1>Manage Brands</h1>
+    <h1>Administrar registro de sabores</h1>
     <center><img class="ui medium rounded image" src="brand.svg"></center>
     <br>
     <center>
@@ -138,12 +119,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Brand</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Añadir nueva categoria de sabores</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Enter New Brand</label>
+                <label for="formGroupExampleInput" class="form-label">Añadir nuevo sabor</label>
                 <form action="/addbrand" method="POST">
                 <input type="text" class="form-control" id="formGroupExampleInput" name="new" style="color:white;background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
               </div>
@@ -160,7 +141,7 @@
     <table class="ui inverted violet table table-bordered" >
         <thead>
         <tr>
-            <th><center><h1>Brands</h1></center></th>
+            <th><center><h1>Sabores</h1></center></th>
         </tr>
     </thead>
     <tbody>

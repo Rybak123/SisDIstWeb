@@ -22,7 +22,7 @@
       <h1 class="fs-1 text-white" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);"><center><shop-name></center></h1>  
       
        <br>
-          <h3 class="card-title"><center>LOGIN to your account</center></h3>
+          <h3 class="card-title"><center>Ingresa con tu cuenta de usuario</center></h3>
           
           <% if (messages.error) {%>
             <div class="alert alert-danger" role="alert">
@@ -35,25 +35,25 @@
           <div class="ui two column grid">
           <div class="row">
             <div class="column">
-              <img class="ui medium image" src="lock.svg">
+              <img class="ui medium image" src="/panda/PandaLogo_Login.png">
             </div>
           <div class="column">
           <form action="/login" method="POST" class="ui large form">
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input placeholder="Your email address" type="email" class="form-control" id="email" name="email" required>
+                <input placeholder="Tu correo electronico" type="email" class="form-control" id="email" name="email" required>
                </div> 
               </div>
               <div class="field">
                 <div class="ui left icon input">
                   <i class="lock icon"></i>
-                <input placeholder="Your password" type="password" class="form-control" id="password" name="password" required>
+                <input placeholder="Tu contraseña" type="password" class="form-control" id="password" name="password" required>
               </div>
               </div>
             
             <br>
-            <button type="submit" class="ui fluid large teal submit button" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">Login</button>
+            <button type="submit" class="ui fluid large teal submit button" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">Ingresar</button>
         </form>
       </div>
     </div>
