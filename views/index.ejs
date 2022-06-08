@@ -47,44 +47,44 @@
       <li class="nav-item">
         <a href="/orders" class="nav-link text-dark font-italic">
           <i class="eye icon"></i>
-                  Ver orden de ventas
+          Ver ventas
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  Ver productos
+          Ver inventario
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic">
           <i class="plus circle icon"></i>
-                  Añadir producto
+          Añadir inventario
               </a>
       </li>
     </ul>
   
     <h5 class="ui horizontal divider header text-primary">
-      HELADOS
+      PRODUCTOS
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic">
           <i class="yelp icon"></i>
-                  Sabor
+          Productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic">
           <i class="bookmark icon"></i>
-                  Categorias
+          Categorías
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Unidad de venta
+          Unidades de venta
               </a>
       </li>
     </ul>
@@ -102,7 +102,7 @@
     <br>
     <h1>Tablero de control</h1>
     <br>
-    <center><img class="ui large rounded image" src="dashboard.svg"></center>
+    <center><img class="ui medium rounded image" src="panda/rate.png"></center>
     <br>
     <br>
     <br>
@@ -116,7 +116,7 @@
             <div class="ui statistic">
                 <div class="value">
                   <p class="text-white">
-                  <span>&#8377;</span>
+                  <span>Bs.</span>
                  <% total_sales.forEach(function(order){ %>
                     <%= order.TotalItemsOrdered %>
                   <% }); %>
@@ -144,7 +144,7 @@
                 </p>
               </div>
               <div class="label">
-                Total de ventas
+                Total de productos vendidos
               </div>
             </div>
           </center>
@@ -164,7 +164,7 @@
                 </p>
               </div>
               <div class="label">
-                Total de productos en stock
+                Total de productos en almacén
               </div>
             </div>
           </center>
@@ -179,13 +179,13 @@
             <div class="ui statistic">
               <div class="value">
                 <p class="text-white">
-                  <i class="rupee sign icon"></i><% total_stock.forEach(function(order){ %>
+                  <span> Bs.</span><% total_stock.forEach(function(order){ %>
                   <%= order. TotalItemsOrdered %>
                 <% }); %>
                 </p>
               </div>
               <div class="label">
-                Valor de los productos en stock
+                Valor de los productos en almacén
               </div>
             </div>
           </center>

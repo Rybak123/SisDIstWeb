@@ -47,46 +47,46 @@
       <li class="nav-item">
      <a href="/orders" class="nav-link text-dark font-italic" >
       <i class="eye icon"></i>
-                  Ver orden de ventas
+      Ver ventas
     
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  Ver productos
+          Ver inventario
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic">
           <i class="plus circle icon"></i>
-                  Añadir producto
+          Añadir inventario
               </a>
       </li>
     </ul>
   
     <h5 class="ui horizontal divider header text-primary">
-      HELADOS
+      PRODUCTOS
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic">
           <i class="yelp icon"></i>
-                  Sabor
+          Productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
             <p class="text-white"><i class="bookmark icon"></i>
-                  Categoria
+              Categorías
             </p>
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Unidad de venta
+          Unidades de venta
               </a>
       </li>
     </ul>
@@ -103,10 +103,10 @@
     <!-- Page content -->
     
     <h1>Administrar categorias</h1>
-    <center><img class="ui medium rounded image" src="category.svg">
+    <center><img class="ui medium rounded image" src="panda/productos.png">
     <br>
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Añadir nueva categoria <i class="plus circle icon"></i></span>
   </button>
 </center>
@@ -116,19 +116,19 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Añadir nueva categoria</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Enter New Category</label>
+                <label for="formGroupExampleInput" class="form-label">Ingresa la nueva categoria</label>
                 <form action="/addcategory" method="POST">
                 <input type="text" class="form-control" id="formGroupExampleInput" name="new" style="color:white;background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" value="Hello" >Submit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" value="Hello" >Envíar</button>
         </form>
         </div>
       </div>

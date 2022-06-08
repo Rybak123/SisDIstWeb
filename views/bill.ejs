@@ -48,44 +48,44 @@
       <li class="nav-item">
         <a href="/orders" class="nav-link text-dark font-italic">
           <i class="eye icon"></i>
-                  Ver orden de ventas
+          Ver ventas
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  Ver productos
+          Ver inventario
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic">
           <i class="plus circle icon"></i>
-                  Añadir producto
+          Añadir inventario
               </a>
       </li>
     </ul>
   
     <h5 class="ui horizontal divider header text-primary">
-      HELADOS
+      PRODUCTOS
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic">
           <i class="yelp icon"></i>
-                  Sabor
+          Productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic">
           <i class="bookmark icon"></i>
-                  Categorias
+          Categorías
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Unidad de venta
+          Unidades de venta
               </a>
       </li>
     </ul>
@@ -98,23 +98,23 @@
     <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="align justify icon"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
   
     <!-- Page content -->
-    <h1>Ventas de productos</h1>
-    <center><img class="ui small rounded image" src="creditcard.svg"></center>
+    <h1>Venta de productos</h1>
+    <center><img class="ui small rounded image" src="panda/punto-de-venta.png"></center>
     <br>
-    <center><span class="btn btn-lg btn-primary btn_row_add_below_end">Generar nueva factura de venta<i class="shopping cart icon"></i></span></center>
+    <center><span class="btn btn-lg btn-success btn_row_add_below_end">Generar nuevo registro de venta<i class="shopping cart icon"></i></span></center>
     <br>
     <div class="ui fluid container">
     <form action="/submitbill" method="POST">
     <table class="ui inverted pink celled table celled tbl_code_with_mark" id="myTable">
       <thead>
         <tr style="background: linear-gradient(to left, #f1ef69 0%, #f7a85f 68%);">
-          <th>Numero de producto</th>
+          <th>Número</th>
           <th>Codigo de producto</th>
           <th>Nombre de producto</th>
           <th>Categoria</th>
-          <th>Sabor</th>
-          <th>Unidad de medida</th>
-          <th>Cantidad</th>
+          <th>Producto</th>
+          <th>Unidad de venta</th>
+          <th>Coste de venta</th>
           <th>Telefono celular</th>
         </tr>
       </thead>
@@ -126,60 +126,60 @@
           <td class="table-danger">
             <div class="form-floating">
             <input type="text" class="form-control" id="itemid1" name="itemid1"  size="4" required>
-            <label for="floatingInput">Codigo</label>
+            <label for="floatingInput">Código</label>
             <button type="button" class="btn btn-outline-success" id="fetchitem1" onclick="fetchitem()">Get Item</button>
             </div>
         </td>
           <td class="table-primary">
             <div class="form-floating">
-              <input type="text" class="form-control" id="itemname1" name="itemname1" size="4" required >
+              <input disabled type="text" class="form-control" id="itemname1" name="itemname1" size="4" required >
               <label for="floatingInput">Nombre</label>
               
           </div>
           </td>
           <td class="table-warning"> 
             <div class="form-floating">
-              <select class="form-select" aria-label="Default select example" name="category1" id="category1" required > 
+              <select disabled class="form-select" aria-label="Default select example" name="category1" id="category1" required > 
                 <% category.forEach(function(order){ %>
                   <option name="<%= order.Category %>" value="<%= order.Category %>"><%= order.Category %></option>
                 <% }); %>
             
               </select>
-                <label for="floatingInput">Categoria</label>
+                <label for="floatingInput"></label>
             </div>
           </td>
           <td class="table-warning">
             <div class="form-floating">
-              <select class="form-select" aria-label="Default select example" name="brand1" id="brand1" required >
+              <select disabled class="form-select" aria-label="Default select example" name="brand1" id="brand1" required >
                 <% brand.forEach(function(order){ %>
                 <option value="<%= order.Brand %>"><%= order.Brand %></option>
                 <% }); %>
            
               </select>
-                <label for="floatingInput">Sabor</label>
+                <label for="floatingInput"></label>
             </div>
           </td>
           <td class="table-warning">
             <div class="form-floating">
-              <select class="form-select" aria-label="Default select example" name="size1" id="size1" required >
+              <select  disabled class="form-select" aria-label="Default select example" name="size1" id="size1" required >
                 <% size.forEach(function(order){ %>
                   <option value="<%= order.Size %>"><%= order.Size %></option>
                 <% }); %>
            
               </select>
-              <label for="floatingInput">Unidad de medida/label>
+              <label for="floatingInput"></label>
             </div>
           </td>
           <td class="table-success"> 
             <div class="form-floating">
-              <input type="number" class="form-control" id="amount1" name="amount1" value=0 min="0" max="99999" required>
-              <label for="floatingInput">Cantidad <i class="rupee sign icon"></i></label>
+              <input disabled type="number" class="form-control" id="amount1" name="amount1" value=0 min="0" max="99999" required>
+              <label for="floatingInput"> <i>Bs. </i></label>
               
           </div>
           </td>
           <td class="table-primary">
             <div class="form-floating">
-              <input type="text" class="form-control" id="customer1" name="customer1" size="4" required >
+              <input  type="text" class="form-control" id="customer1" name="customer1" size="4" required >
               <label for="floatingInput">Telefono<i class="phone volume icon"></i></label>
             </div>
           </td>
@@ -196,8 +196,8 @@
       <button class="ui green submit button" type="button" onclick="downloadInvoice()">Descargar</button></center>
 
         <h4 class="ui horizontal divider header">
-          <i class="rupee sign icon"></i>
-         TOTAL CART VALUE
+          <i>Bs.</i>
+          Coste total de venta
         </h4>
         <br>
         <center>
@@ -206,7 +206,7 @@
               <div class="card-body">
                 <div class="form-floating">
                   <input type="number" class="form-control" id="total" name="total" value=0  required disabled>
-                  <label for="floatingInput">Total Amount</label>
+                  <label for="floatingInput">Coste de venta</label>
                 
               </div>
               </div>
@@ -443,10 +443,9 @@
           let item_obj = {
             "quantity": "1",
             "description": item_names[i].value,
-            "tax": 0,
+            "tax-rate": 0,
             "price": item_names[j].value
           }
-          console.log(item_obj)
           items_arr.push(item_obj)
         }
       }
@@ -456,7 +455,7 @@
   }
   console.log(items_arr)
   return {
-    //"documentTitle": "RECEIPT", //Defaults to INVOICE
+    "documentTitle": "Recibo", //Defaults to INVOICE
     "currency": "INR",
     "taxNotation": "gst", //or gst
     "marginTop": 25,
@@ -466,22 +465,38 @@
     "logo": "https://i.pinimg.com/564x/47/7c/4c/477c4c269034cc0bc048409346ac83e9.jpg", //or base64
     //"logoExtension": "png", //only when logo is base64
     "sender": {
-      "company": "<shop-name>",
-      "address": "<shop-address>",
-      "zip": "<shop-zip>",
-      "city": "<shop-city>",
-      "country": "Mob. - <shop-owner-mobile-number>",
+      "company": "Panda ",
+      "address": "Carretera a Viacha Ladislao Cabrera, El Alto #777",
+      "zip": "0000",
+      "city": "El ALto",
+      "country": "Murillo",
        
-      "custom1": "GST No. - <shop-gst-no.>"
+      "custom1": "IVA : 0"
       //"custom2": "custom value 2",
       //"custom3": "custom value 3"
     },
-
-    "invoiceNumber": transaction_id,
-    "invoiceDate": transaction_date,
-    "invoiceTime": transaction_time,
+    "information": {
+        // Invoice number
+        "number": transaction_id,
+        // Invoice data
+        "date": transaction_date,
+        // Invoice due date
+        "due-date":  transaction_time
+    },
     "products": items_arr,
-    "bottomNotice": "Thank You for shopping from <shop-name>. We are looking forward to your next visit !"
+    "translate": {
+       "invoice": "FACTURA",  // Default to 'INVOICE'
+        "number": "Número", // Defaults to 'Number'
+        "date": "Fecha", // Default to 'Date'
+        "due-date": "Hora", // Defaults to 'Due Date'
+        "subtotal": "Subtotal", // Defaults to 'Subtotal'
+        "products": "Producto", // Defaults to 'Products'
+      "quantity": "Cantidad", // Default to 'Quantity'
+        "price": "Precio", // Defaults to 'Price'
+        "product-total": "Total de productos", // Defaults to 'Total'
+        "total": "Precio total" // Defaults to 'Total'
+    },
+    "bottom-notice": "¡Gracias por su compra!"
   };
 }
 

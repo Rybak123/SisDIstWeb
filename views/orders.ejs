@@ -47,45 +47,45 @@
       <li class="nav-item">
      <a href="/orders" class="nav-link text-dark font-italic" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
       <p class="text-white"> <i class="eye icon"></i>
-                  Ver orden de ventas
+        Ver ventas
       </p>
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  Ver productos
+          Ver inventario
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic">
           <i class="plus circle icon"></i>
-                  Añadir producto
+          Añadir inventario
               </a>
       </li>
     </ul>
   
     <h5 class="ui horizontal divider header text-primary">
-      HELADOS
+      PRODUCTOS
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic">
           <i class="yelp icon"></i>
-                  Sabor
+          Productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic">
           <i class="bookmark icon"></i>
-                  Categorias
+          Categorías
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Unidad de venta
+          Unidades de venta
               </a>
       </li>
     </ul>
@@ -99,10 +99,10 @@
   
     <!-- Page content -->
     
-    <h1>Resumen de ventas</h1>
+    <h1>Registro de ventas</h1>
 
     
-    <center><img class="ui medium rounded image" src="flower.svg"></center>
+    <center><img class="ui medium rounded image" src="panda/compras.png"></center>
     <br>
     <form action="orders_query" method="POST">
     <div class="ui four column grid">
@@ -135,7 +135,7 @@
               <option value="5">Mayo</option>
               <option value="6">Junio</option>
               <option value="7">Julio</option>
-              <option value="8">Augosto</option>
+              <option value="8">Agosto</option>
               <option value="9">Septiembre</option>
               <option value="10">Octubre</option>
               <option value="11">Noviembre</option>
@@ -178,7 +178,7 @@
               <p class="text-primary">ID de venta: <i><%= order.TransactionID %></i> </p>
             </div>
             <div class="col-lg">
-              <p class="text-danger"> Monto total: <i><i class="rupee sign icon"></i><%= order.Amount %></i></p>
+              <p class="text-danger"> Coste de venta: <i><i>Bs. </i><%= order.Amount %></i></p>
             </div>
           </div>
           <div class="row-lg">
@@ -197,13 +197,13 @@
           <thead>
             <tr class="table-success">
                 
-                <th>Id de venta</th>
-                <th>nombre de producto</th>
-                <th>Categoria</th>
-                <th>Sabor</th>
+                <th>Código de venta</th>
+                <th>Nombre de producto</th>
+                <th>Categoría</th>
+                <th>Producto</th>
                 <th>Unidad de venta</th>
-                <th>Cantidad</th>
-                <th>nombre de cliente</th>
+                <th>Coste de venta</th>
+                <th>Telefono del cliente</th>
             </tr>
         </thead>
           <tbody>
@@ -218,7 +218,7 @@
             <td><%= sub_order.Category %></td>
             <td><%= sub_order.Brand %></td>
             <td><%= sub_order.Size %></td>
-            <td><i class="rupee sign icon"></i><%= sub_order.Amount %></td>
+            <td><i >Bs. </i><%= sub_order.Amount %></td>
             <td><%= sub_order.CustomerNumber %></td>
             </tr>
           <% } %>
@@ -234,7 +234,7 @@
   <% } %>
     
   <% if(selected_item == 'month') { %> 
-    <h2 class="text-primary">Showing Orders for <%= month_name %>, <%= year %>  </h2>
+    <h2 class="text-primary">Mostrando ventas por el mes <%= month_name %>, <%= year %>  </h2>
     <% orders.forEach(function(order){ %>
       <br>
     <div class="ui styled fluid accordion">
@@ -243,10 +243,10 @@
       <div class="container">
         <div class="row-lg">
           <div class="col-lg">
-            <p class="text-primary">Codigo de venta: <i><%= order.TransactionID %></i> </p>
+            <p class="text-primary">Código de venta: <i><%= order.TransactionID %></i> </p>
           </div>
           <div class="col-lg">
-            <p class="text-danger"> Monto total: <i><i class="rupee sign icon"></i><%= order.Amount %></i></p>
+            <p class="text-danger"> Coste de venta: <i><i>Bs. </i><%= order.Amount %></i></p>
           </div>
         </div>
         <div class="row-lg">
@@ -263,14 +263,13 @@
       <table class="ui inverted violet table table-bordered" >
         <thead>
           <tr class="table-success">
-              
-              <th>Codigo de venta</th>
-              <th>nombre de producto</th>
-              <th>Categoria</th>
-              <th>Sabor</th>
-              <th>Unidad de venta</th>
-              <th>cantidad </th>
-              <th>Numero de cliente</th>
+            <th>Código de venta</th>
+            <th>Nombre de producto</th>
+            <th>Categoría</th>
+            <th>Producto</th>
+            <th>Unidad de venta</th>
+            <th>Coste de venta</th>
+            <th>Telefono del cliente</th>
           </tr>
       </thead>
         <tbody>
@@ -285,7 +284,7 @@
           <td><%= sub_order.Category %></td>
           <td><%= sub_order.Brand %></td>
           <td><%= sub_order.Size %></td>
-          <td><i class="rupee sign icon"></i><%= sub_order.Amount %></td>
+          <td><i >Bs. </i><%= sub_order.Amount %></td>
           <td><%= sub_order.CustomerNumber %></td>
           </tr>
         <% } %>
@@ -301,7 +300,7 @@
 <% } %>
 
 <% if(selected_item == 'year') { %> 
-  <h2 class="text-primary">Showing Orders for <%= year %>  </h2>
+  <h2 class="text-primary">Mostrando ventas durante el año  <%= year %>  </h2>
   <% orders.forEach(function(order){ %>
     <br>
   <div class="ui styled fluid accordion">
@@ -313,7 +312,7 @@
           <p class="text-primary">Codigo de venta <i><%= order.TransactionID %></i> </p>
         </div>
         <div class="col-lg">
-          <p class="text-danger">Monto total<i><i class="rupee sign icon"></i><%= order.Amount %></i></p>
+          <p class="text-danger"> Coste de venta: <i><i>Bs. </i><%= order.Amount %></i></p>
         </div>
       </div>
       <div class="row-lg">
@@ -331,13 +330,13 @@
       <thead>
         <tr class="table-success">
             
-            <th>Codigo de producto</th>
-            <th>Nombre de producto</th>
-            <th>Categoria</th>
-            <th>Sabor</th>
-            <th>Unidad de venta</th>
-            <th>Cantidad</th>
-            <th>Numero de cliente</th>
+          <th>Código de venta</th>
+          <th>Nombre de producto</th>
+          <th>Categoría</th>
+          <th>Producto</th>
+          <th>Unidad de venta</th>
+          <th>Coste de venta</th>
+          <th>Telefono del cliente</th>
         </tr>
     </thead>
       <tbody>
@@ -352,7 +351,7 @@
         <td><%= sub_order.Category %></td>
         <td><%= sub_order.Brand %></td>
         <td><%= sub_order.Size %></td>
-        <td><i class="rupee sign icon"></i><%= sub_order.Amount %></td>
+        <td><i >Bs. </i><%= sub_order.Amount %></td>
         <td><%= sub_order.CustomerNumber %></td>
         </tr>
       <% } %>
@@ -377,7 +376,10 @@
                 <td><%= order.Size %></td>
                 <td><%= order.Amount %></td>
                 <td><%= order.TransactionDate %></td>
-                <td><%= order.TransactionTime %>&emsp;<form action="/deleteitem" method="POST"><input type="hidden" name="deleteid" value="<%=order.ItemID%>"><button type="submit" class="btn btn-danger btn-sm">Borrar</button></form></td>
+                <td><%= order.TransactionTime %>&emsp;
+                  <form action="/deleteitem" method="POST">
+                    <input type="hidden" name="deleteid" value="<%=order.ItemID%>">
+                    <button type="submit" class="btn btn-danger btn-sm">Borrar</button></form></td>
                 <td><%= order.CustomerNumber %></td>
             </tr>
         <% }); %>

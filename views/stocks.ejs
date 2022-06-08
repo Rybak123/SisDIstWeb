@@ -47,26 +47,26 @@
       <li class="nav-item">
         <a href="/orders" class="nav-link text-dark font-italic">
           <i class="eye icon"></i>
-                  Ver orden de ventas
+                  Ver ventas
               </a>
       </li>
       <li class="nav-item">
         <a href="/viewstocks" class="nav-link text-dark font-italic">
           <i class="tags icon"></i>
-                  Ver productos
+                  Ver inventario
               </a>
       </li>
       <li class="nav-item">
         <a href="/stocks" class="nav-link text-dark font-italic" style="background: linear-gradient(to right, #f1ef69 0%, #f7a85f 68%);">
           <p class="text-white"><i class="plus circle icon"></i>
-                  Añadir producto
+                  Añadir inventario
                   </p>
               </a>
       </li>
     </ul>
   
     <h5 class="ui horizontal divider header text-primary">
-      HELADOS
+      PRODUCTOS
     </h5>
   
     <ul class="nav flex-column bg-white mb-0">
@@ -79,19 +79,19 @@
       <li class="nav-item">
         <a href="/brands" class="nav-link text-dark font-italic">
           <i class="yelp icon"></i>
-                  Sabores
+          Productos
               </a>
       </li>
       <li class="nav-item">
         <a href="/categories" class="nav-link text-dark font-italic">
           <i class="bookmark icon"></i>
-                  Categorias
+          Categorías
               </a>
       </li>
       <li class="nav-item">
         <a href="/sizes" class="nav-link text-dark font-italic">
           <i class="check square icon"></i>
-                  Unidad de venta
+          Unidades de venta
               </a>
       </li>
     </ul>
@@ -106,11 +106,11 @@
   
     <!-- Page content -->
     
-    <h1>Añadir nuevos productos</h1>
+    <h1>Administrar almacén de inventarios</h1>
     <br>
-    <center><img class="ui medium rounded image" src="addstock.svg"></center>
+    <center><img class="ui medium rounded image" src="panda/anadir.png"></center>
     <br>
-    <center><span class="btn btn-lg btn-primary btn_row_add_below_end">Add New Item <i class="plus circle icon"></i></span></center>
+    <center><span class="btn btn-lg btn-success btn_row_add_below_end">Añadir inventario<i class="plus circle icon"></i></span></center>
     <br>
     <br>
     <div class="ui fluid container">
@@ -118,13 +118,13 @@
     <table class="ui inverted pink celled table tbl_code_with_mark" id="myTable">
       <thead>
         <tr style="background: linear-gradient(to left, #f1ef69 0%, #f7a85f 68%);">
-          <th>NUmero de producto</th>
-          <th>Codigo de producto</th>
-          <th>Nombre de producto</th>
-          <th>Categoria</th>
-          <th>Sabor</th>
+          <th>Número</th>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Producto</th>
           <th>Unidad de venta</th>
-          <th>Cantidad</th>
+          <th>Coste de compra</th>
         </tr>
       </thead>
       
@@ -135,13 +135,13 @@
           <td class="table-danger">
             <div class="form-floating">
             <input type="text" class="form-control" id="itemid1" name="itemid1" required>
-            <label for="floatingInput">COdigo de producto</label>
+            <label for="floatingInput">Número</label>
             </div>
         </td>
           <td class="table-primary">
             <div class="form-floating">
               <input type="text" class="form-control" id="itemname1" name="itemname1" required>
-              <label for="floatingInput">NOmbre de producto</label>
+              <label for="floatingInput">Nombre</label>
               
           </div>
           </td>
@@ -164,7 +164,7 @@
                 <option name="kurta" value="Kurta">Kurta</option>
                 <option name="pajama" value="Pajama">Pajama</option> -->
               </select>
-                <label for="floatingInput">Categoria</label>
+                <label for="floatingInput"></label>
             </div>
           </td>
           <td class="table-warning">
@@ -184,7 +184,7 @@
                 <option value="Law Man">Law Man</option>
                 <option value="John Player">John Player</option> -->
               </select>
-                <label for="floatingInput">Sabor</label>
+                <label for="floatingInput"></label>
             </div>
           </td>
           <td class="table-warning">
@@ -200,13 +200,13 @@
                 <option value="XL">XL</option>
                 <option value="XXL">XXL</option> -->
               </select>
-              <label for="floatingInput">Size</label>
+              <label for="floatingInput"></label>
             </div>
           </td>
           <td class="table-success">
             <div class="form-floating">
               <input type="number" class="form-control" name="amount1" placeholder="Enter Amount" value=0 id="amount1" required>
-              <label for="floatingInput">Amount</label>
+              <label for="floatingInput">Coste</label>
               
           </div>
           </td>
@@ -216,7 +216,7 @@
         
      
         </table>
-        <center><button type="submit" class="ui teal submit button">Submit</button></center>
+        <center><button type="submit" class="ui teal submit button">Enviar</button></center>
       </form>
        
      
